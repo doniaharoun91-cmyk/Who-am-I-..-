@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf7ff">
+<meta name="description" content="Donia's personal portfolio — Web Development, Creative Design and Software Engineering.">
+<title>Donia | Creative Developer</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #faf7ff;
+  --white: #ffffff;
+  --purple: #9271d3;
+  --dark-purple: #6847aa;
+  --pink: #edb8d6;
+  --text: #29233c;
+  --muted: #777187;
+  --border: #ece5f6;
+  --soft: #f1e9ff;
+  --shadow: 0 15px 45px #7d60a817;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+body.ar { font-family: 'Cairo', sans-serif; }
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+.container { width: 86%; max-width: 1100px; margin: auto; }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #faf7fff0;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #ece5f680;
+}
+
+.nav-inner {
+  width: 90%;
+  max-width: 1200px;
+  min-height: 76px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo { font-size: 25px; font-weight: 800; letter-spacing: -1px; }
+.logo span { color: var(--purple); }
+
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-links { display: flex; gap: 22px; align-items: center; }
+.nav-links a { font-size: 12px; color: var(--muted); transition: .2s; }
+.nav-links a:hover { color: var(--purple); }
+
+.lang-btn {
+  border: 1px solid var(--purple);
+  color: var(--dark-purple);
+  background: white;
+  border-radius: 25px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 670px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 65px;
+  padding-top: 75px;
+  padding-bottom: 80px;
+}
+
+.hero-text { flex: 1; animation: fadeUp 1s ease both; }
+
+.eyebrow {
+  color: var(--dark-purple);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+body.ar .eyebrow { letter-spacing: 0; }
+
+.hero h1 {
+  font-size: clamp(45px, 6vw, 76px);
+  line-height: 1.2;
+  margin: 18px 0;
+  letter-spacing: -2px;
+}
+
+body.ar .hero h1 { letter-spacing: 0; }
+
+.gradient {
+  background: linear-gradient(110deg, #8b68cf, #d58dbb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.role { font-size: 18px; font-weight: 600; margin-bottom: 17px; }
+
+.typing-text {
+  color: var(--muted);
+  max-width: 510px;
+  min-height: 100px;
+  font-size: 14px;
+  line-height: 2.1;
+}
+
+body.ar .typing-text { max-width: 550px; }
+
+.cursor { color: var(--purple); animation: blink .7s infinite; }
+
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 23px; }
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 21px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.btn:hover { transform: translateY(-4px); }
+
+.btn-main {
+  color: white;
+  background: linear-gradient(120deg, #9271d3, #ad8adf);
+  box-shadow: 0 8px 22px #9271d333;
+}
+
+.btn-light {
+  color: var(--dark-purple);
+  background: white;
+  border-color: #d9c9f2;
+}
+
+.portrait-wrap {
+  width: min(310px, 34vw);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  position: relative;
+  animation: float 4s ease-in-out infinite;
+}
+
+.portrait-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border: 2px dashed var(--pink);
+  border-radius: 47% 53% 42% 58%;
+  animation: rotate 20s linear infinite;
+}
+
+.portrait {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 7px solid white;
+  border-radius: 47% 53% 42% 58%;
+  background: linear-gradient(140deg, #f5dced, #e7dcff);
+  box-shadow: var(--shadow);
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 47% 53% 42% 58%;
+  background: linear-gradient(140deg, #f5dced, #e7dcff);
+  font-size: 80px;
+}
+
+.float-tag {
+  position: absolute;
+  z-index: 3;
+  background: white;
+  border: 1px solid #f0e9f8;
+  box-shadow: var(--shadow);
+  padding: 11px 14px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tag-top { top: 10%; inset-inline-end: -38px; }
+.tag-bottom { bottom: 8%; inset-inline-start: -42px; }
+
+section { padding: 82px 0; }
+
+.section-heading { text-align: center; margin-bottom: 38px; }
+
+.section-heading h2 { font-size: 32px; margin-bottom: 9px; }
+
+.section-heading p { color: var(--muted); font-size: 13px; line-height: 1.9; }
+
+.about-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 12px 35px #7d60a809;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2.2;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.skill {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  padding: 24px 18px;
+  transition: .3s;
+}
+
+.skill:hover, .project:hover {
+  transform: translateY(-6px);
+  border-color: var(--pink);
+  box-shadow: var(--shadow);
+}
+
+.skill-icon { font-size: 29px; margin-bottom: 12px; }
+.skill h3 { font-size: 15px; margin-bottom: 8px; }
+.skill p { color: var(--muted); font-size: 12px; line-height: 1.9; }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.project {
+  padding: 26px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  transition: .3s;
+}
+
+.project-icon { font-size: 33px; margin-bottom: 13px; }
+.project h3 { font-size: 17px; margin-bottom: 10px; }
+.project p { font-size: 13px; line-height: 2; color: var(--muted); }
+
+.project-tag {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 18px;
+  background: var(--soft);
+  color: var(--dark-purple);
+  font-size: 10px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.goals-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+.goal {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 19px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: white;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.goal-icon { font-size: 21px; }
+
+.contact-card {
+  text-align: center;
+  padding: 45px 25px;
+  border-radius: 28px;
+  border: 1px solid #eee1fb;
+  background: linear-gradient(135deg, #f0e7ff, #fff0f7);
+}
+
+.contact-card h2 { font-size: 29px; }
+
+.contact-card p {
+  max-width: 500px;
+  margin: 15px auto 25px;
+  font-size: 13px;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #e5d8f6;
+  border-radius: 28px;
+  padding: 12px 17px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.contact-link:hover { transform: translateY(-3px); border-color: var(--purple); }
+
+footer { text-align: center; padding: 26px 12px; color: var(--muted); font-size: 12px; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s, transform .7s; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-13px) rotate(1deg); }
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width: 760px) {
+  .container { width: 88%; }
+  .nav-inner { width: 94%; min-height: 67px; gap: 8px; }
+  .logo { font-size: 21px; }
+  .nav-right { gap: 10px; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 10px; }
+  .lang-btn { padding: 8px 10px; font-size: 11px; }
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 43px;
+    min-height: auto;
+    padding-top: 60px;
+    padding-bottom: 75px;
+  }
+  .portrait-wrap { width: 205px; }
+  .hero h1 { font-size: 46px; }
+  .typing-text { margin: auto; min-height: 125px; }
+  .hero-buttons { justify-content: center; }
+  .tag-top { inset-inline-end: -24px; }
+  .tag-bottom { inset-inline-start: -27px; }
+  section { padding: 65px 0; }
+  .section-heading h2 { font-size: 28px; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .skill { padding: 21px 13px; }
+  .projects-grid, .goals-grid { grid-template-columns: 1fr; }
+  .about-card { padding: 23px; }
+  .contact-card h2 { font-size: 24px; }
+}
+
+@media(max-width: 370px) {
+  .nav-links { gap: 7px; }
+  .nav-links a { font-size: 9px; }
+  .logo { font-size: 18px; }
+  .hero h1 { font-size: 39px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">Donia<span>.</span></a>
+
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about" data-en="About" data-ar="عني">About</a>
+        <a href="#skills" data-en="Skills" data-ar="مهاراتي">Skills</a>
+        <a href="#projects" data-en="Projects" data-ar="مشاريعي">Projects</a>
+        <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
+      </div>
+      <button class="lang-btn" id="langBtn" type="button">عربي</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero container" id="home">
+  <div class="hero-text">
+    <p class="eyebrow" data-en="HELLO, WORLD! ✨" data-ar="أهلًا بيكم في عالمي ✨">HELLO, WORLD! ✨</p>
+
+    <h1>
+      <span data-en="Hi, I'm" data-ar="أهلًا، أنا">Hi, I'm</span>
+      <span class="gradient"> Donia.</span>
+    </h1>
+
+    <p class="role" data-en="Aspiring Software Engineer 💻" data-ar="مهتمة بهندسة البرمجيات 💻">Aspiring Software Engineer 💻</p>
+
+    <p class="typing-text"><span id="typing"></span><span class="cursor">|</span></p>
+
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-main" data-en="Explore My Work ↗" data-ar="اكتشف مشاريعي ↗">Explore My Work ↗</a>
+      <a href="#contact" class="btn btn-light" data-en="Let's Connect ♡" data-ar="خلينا نتواصل ♡">Let's Connect ♡</a>
+    </div>
+  </div>
+
+  <div class="portrait-wrap">
+    <div class="photo-placeholder" id="photoPlaceholder">👩🏻‍💻</div>
+    <img
+      src="photo.jpg"
+      alt="Donia"
+      class="portrait"
+      id="portrait"
+      style="display:none"
+      onload="this.style.display='block';document.getElementById('photoPlaceholder').style.display='none';"
+      onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex';"
+    >
+    <div class="float-tag tag-top" data-en="💜 Creative Mind" data-ar="💜 عقل مبدع">💜 Creative Mind</div>
+    <div class="float-tag tag-bottom" data-en="✨ Always Learning" data-ar="✨ أتعلم باستمرار">✨ Always Learning</div>
+  </div>
+</header>
+
+<section id="about" class="reveal">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="About Me ♡" data-ar="من أنا؟ ♡">About Me ♡</h2>
+      <p data-en="A little story about me" data-ar="حكاية صغيرة عني">A little story about me</p>
+    </div>
+
+    <div class="about-card">
+      <p data-en="I'm Donia, a technology enthusiast passionate about software engineering, web development, and creative design."
+         data-ar="أنا دنيا، مهتمة بالتكنولوجيا وهندسة البرمجيات وتطوير المواقع والتصميم الإبداعي.">
+        I'm Donia, a technology enthusiast passionate about software engineering, web development, and creative design.
+      </p>
+      <br>
+      <p data-en="I enjoy transforming ideas into beautiful, responsive, and easy-to-use websites. I love exploring new tools, learning through practice, and creating digital experiences that combine creativity with functionality."
+         data-ar="بحب أحوّل الأفكار لمواقع جميلة ومتوافقة مع الشاشات المختلفة وسهلة الاستخدام. بستمتع باكتشاف أدوات جديدة والتعلم بالتطبيق وإنشاء تجارب رقمية تجمع بين الإبداع والوظائف العملية.">
+        I enjoy transforming ideas into beautiful, responsive, and easy-to-use websites. I love exploring new tools, learning through practice, and creating digital experiences that combine creativity with functionality.
+      </p>
+      <br>
+      <p data-en="My goal is to keep growing, build meaningful projects, and collaborate with businesses to bring their ideas online."
+         data-ar="هدفي إني أستمر في التطور، وأنفذ مشاريع مفيدة، وأتعاون مع أصحاب المشروعات لتحويل أفكارهم لوجود حقيقي على الإنترنت.">
+        My goal is to keep growing, build meaningful projects, and collaborate with businesses to bring their ideas online.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="My Skills ✨" data-ar="مهاراتي ✨">My Skills ✨</h2>
+      <p data-en="Technologies I'm learning and practicing" data-ar="التقنيات اللي بتعلمها وبطبّق عليها">Technologies I'm learning and practicing</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill">
+        <div class="skill-icon">🌐</div>
+        <h3>HTML</h3>
+        <p data-en="Building web page structures." data-ar="بناء هيكل صفحات الويب.">Building web page structures.</p>
+      </div>
+      <div class="skill">
+        <div class="skill-icon">🎨</div>
+        <h3>CSS</h3>
+        <p data-en="Styling, layouts, and animations." data-ar="تنسيق الصفحات والألوان والحركات.">Styling, layouts, and animations.</p>
+      </div>
+      <div class="skill">
+        <div class="skill-icon">⚡</div>
+        <h3>JavaScript</h3>
+        <p data-en="Making websites interactive." data-ar="إضافة التفاعل للمواقع.">Making websites interactive.</p>
+      </div>
+      <div class="skill">
+        <div class="skill-icon">📱</div>
+        <h3 data-en="Responsive Design" data-ar="التصميم المتجاوب">Responsive Design</h3>
+        <p data-en="Websites that work across screen sizes." data-ar="مواقع تناسب الموبايل والشاشات المختلفة.">Websites that work across screen sizes.</p>
+      </div>
+      <div class="skill">
+        <div class="skill-icon">🧩</div>
+        <h3 data-en="Problem Solving" data-ar="حل المشكلات">Problem Solving</h3>
+        <p data-en="Learning to solve challenges step by step." data-ar="تعلم حل المشكلات خطوة بخطوة.">Learning to solve challenges step by step.</p>
+      </div>
+      <div class="skill">
+        <div class="skill-icon">📚</div>
+        <h3 data-en="Continuous Learning" data-ar="التعلم المستمر">Continuous Learning</h3>
+        <p data-en="Growing through practice and projects." data-ar="التطور من خلال التطبيق والمشاريع.">Growing through practice and projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="Selected Projects 💻" data-ar="نماذج من مشاريعي 💻">Selected Projects 💻</h2>
+      <p data-en="Website concepts and practice projects" data-ar="نماذج مواقع ومشاريع للتدريب">Website concepts and practice projects</p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project">
+        <div class="project-icon">🏋🏻</div>
+        <h3>EXTREME GYM</h3>
+        <p data-en="A gym website concept featuring trainers, a gallery, and contact options."
+           data-ar="نموذج موقع جيم يضم المدربين ومعرض الصور ووسائل التواصل.">
+          A gym website concept featuring trainers, a gallery, and contact options.
+        </p>
+        <span class="project-tag" data-en="WEBSITE CONCEPT" data-ar="نموذج تجريبي">WEBSITE CONCEPT</span>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">🛋️</div>
+        <h3>LAVORA Furniture</h3>
+        <p data-en="A furniture showroom concept with product categories and a modern shopping layout."
+           data-ar="نموذج معرض أثاث بأقسام للمنتجات وتصميم عصري.">
+          A furniture showroom concept with product categories and a modern shopping layout.
+        </p>
+        <span class="project-tag" data-en="WEBSITE CONCEPT" data-ar="نموذج تجريبي">WEBSITE CONCEPT</span>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">💎</div>
+        <h3>WIKA Accessories</h3>
+        <p data-en="An accessories store concept designed to present products and customer orders."
+           data-ar="نموذج متجر إكسسوارات لعرض المنتجات واستقبال الطلبات.">
+          An accessories store concept designed to present products and customer orders.
+        </p>
+        <span class="project-tag" data-en="WEBSITE CONCEPT" data-ar="نموذج تجريبي">WEBSITE CONCEPT</span>
+      </article>
+
+      <article class="project">
+        <div class="project-icon">☕</div>
+        <h3>Black Aroma</h3>
+        <p data-en="A coffee shop website concept with elegant styling and product presentation."
+           data-ar="نموذج موقع كافيه بتصميم أنيق وعرض للمنتجات.">
+          A coffee shop website concept with elegant styling and product presentation.
+        </p>
+        <span class="project-tag" data-en="WEBSITE CONCEPT" data-ar="نموذج تجريبي">WEBSITE CONCEPT</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="goals" class="reveal">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="My Vision 🎯" data-ar="رؤيتي 🎯">My Vision 🎯</h2>
+      <p data-en="Small steps, bigger possibilities" data-ar="خطوات صغيرة وفرص أكبر">Small steps, bigger possibilities</p>
+    </div>
+
+    <div class="goals-grid">
+      <div class="goal">
+        <span class="goal-icon">💻</span>
+        <p data-en="Build beautiful, professional websites for real businesses."
+           data-ar="إنشاء مواقع جميلة واحترافية للمشروعات الحقيقية.">
+          Build beautiful, professional websites for real businesses.
+        </p>
+      </div>
+      <div class="goal">
+        <span class="goal-icon">📈</span>
+        <p data-en="Continuously improve my programming and design skills."
+           data-ar="تطوير مهاراتي في البرمجة والتصميم باستمرار.">
+          Continuously improve my programming and design skills.
+        </p>
+      </div>
+      <div class="goal">
+        <span class="goal-icon">🤝</span>
+        <p data-en="Build meaningful relationships with clients and creative teams."
+           data-ar="بناء علاقات مهنية ناجحة مع العملاء وفرق العمل.">
+          Build meaningful relationships with clients and creative teams.
+        </p>
+      </div>
+      <div class="goal">
+        <span class="goal-icon">🌍</span>
+        <p data-en="Grow my portfolio and connect with people around the world."
+           data-ar="تطوير معرض أعمالي والتواصل مع أشخاص من مختلف أنحاء العالم.">
+          Grow my portfolio and connect with people around the world.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="container">
+    <div class="contact-card">
+      <h2 data-en="Let's Build Something Great 💌" data-ar="يلا نبني حاجة مميزة سوا 💌">Let's Build Something Great 💌</h2>
+      <p data-en="Have an idea, a project, or an opportunity? I'd love to hear from you."
+         data-ar="عندك فكرة أو مشروع أو فرصة تعاون؟ يسعدني أسمع منك.">
+        Have an idea, a project, or an opportunity? I'd love to hear from you.
+      </p>
+
+      <div class="contact-links">
+        <a class="contact-link"
+           href="https://wa.me/201141654852"
+           target="_blank" rel="noopener noreferrer">
+          <span>💬</span>
+          <span data-en="WhatsApp" data-ar="واتساب">WhatsApp</span>
+        </a>
+
+        <a class="contact-link"
+           href="https://www.instagram.com/donia__cs/"
+           target="_blank" rel="noopener noreferrer">
+          <span>📸</span>
+          <span data-en="Instagram" data-ar="إنستجرام">Instagram</span>
+        </a>
+
+        <a class="contact-link" href="mailto:doniaharoun91@gamil.com">
+          <span>✉️</span>
+          <span data-en="Email Me" data-ar="راسليني">Email Me</span>
+        </a>
+
+        <a class="contact-link" href="tel:+201141654852">
+          <span>📞</span>
+          <span data-en="Call Me" data-ar="اتصلي بيا">Call Me</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p data-en="Designed with ♡ by Donia" data-ar="اتصمم بكل حب ♡ بواسطة دنيا">Designed with ♡ by Donia</p>
+  <p style="margin-top:8px">© <span id="year"></span> Donia</p>
+</footer>
+
+<script>
+const messages = {
+  en: "I'm passionate about technology, web development, and creative design. I'm learning, building projects, and turning ideas into digital experiences, one step at a time.",
+  ar: "عندي شغف بالتكنولوجيا وتطوير المواقع والتصميم الإبداعي. بتعلم وبنفذ مشاريع وبحوّل الأفكار لتجارب رقمية مميزة، خطوة بخطوة."
+};
+
+let language = "en";
+let typingTimer;
+let letterIndex = 0;
+
+const typing = document.getElementById("typing");
+const langBtn = document.getElementById("langBtn");
+
+function typeText() {
+  clearTimeout(typingTimer);
+  letterIndex = 0;
+  typing.textContent = "";
+
+  const message = messages[language];
+
+  function nextLetter() {
+    if (letterIndex < message.length) {
+      typing.textContent += message.charAt(letterIndex);
+      letterIndex++;
+      typingTimer = setTimeout(nextLetter, language === "ar" ? 42 : 34);
+    }
+  }
+
+  typingTimer = setTimeout(nextLetter, 400);
+}
+
+function setLanguage(nextLanguage) {
+  language = nextLanguage;
+
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  document.body.classList.toggle("ar", language === "ar");
+
+  document.querySelectorAll("[data-en][data-ar]").forEach(element => {
+    element.textContent = element.dataset[language];
+  });
+
+  langBtn.textContent = language === "en" ? "عربي" : "English";
+  typeText();
+}
+
+langBtn.addEventListener("click", () => {
+  setLanguage(language === "en" ? "ar" : "en");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".reveal").forEach(section => {
+    observer.observe(section);
+  });
+} else {
+  document.querySelectorAll(".reveal").forEach(section => {
+    section.classList.add("show");
+  });
+}
+
+setLanguage("en");
+</script>
+
+</body>
+</html>
